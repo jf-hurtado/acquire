@@ -39,26 +39,26 @@ const getDataKunna = async () => {
     }
 
     body = {
-            "time_start": startDateForApi,
-            "time_end": endDateForApi,
+        "time_start": startDateForApi,
+        "time_end": endDateForApi,
 
-                "filters": [
-                {
-                "filter": "name",
-                "values": [
-                    "1d"
-                ]
-                }, {"filter": "uid",
-                "values": [
-                    "MLU00360002"
-                ]
-                }
-            ],
-
-            "limit": 100,
-            "count": false,
-            "order": "DESC"
+            "filters": [
+            {
+            "filter": "name",
+            "values": [
+                "1d"
+            ]
+            }, {"filter": "uid",
+            "values": [
+                "MLU00360002"
+            ]
             }
+        ],
+
+        "limit": 100,
+        "count": false,
+        "order": "DESC"
+    }
     
     
     const response = await fetch(process.env.KUNNA_URL, {

@@ -14,7 +14,7 @@ const health = (req, res) => {
 // obtención de datos de un día concreto que no sea para hoy o mañana 
 const data = async (req, res) => {    
     try {
-        const apiData = getDataKunna();
+        const apiData = await getDataKunna();
         res.status(200).json({
             message: 'Datos obtenidos con exito',
             data: apiData

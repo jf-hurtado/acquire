@@ -12,18 +12,34 @@ const health = (req, res) => {
 // Como no se pasa body no sé cual va a ser la fecha objetivo, es decir,
 // si se va a poder pasar la fecha objetivo por parámetro para hacer la
 // obtención de datos de un día concreto que no sea para hoy o mañana 
-const data = async (req, res) => {    
+const data = async (req, res) => { 
+    let targetDate;   
+    let apiData;
+    let savedData;
+
     try {
-        const apiData = await getDataKunna();
-        res.status(200).json({
-            message: 'Datos obtenidos con exito',
-            data: apiData
-        });
+        console.log('[ACQUIRE DATA] Accediendo a la API externa (kunna)')
+        const result = await getDataKunna();
+        apiData = result.apiData;
+        targetDate = result.targetDate;
 
     } catch(err) {
-        console.error('[ACQUIRE DATA] ERROR al obtener datos de Kunna', err);
-        res.status(500).json({error: 'Error interno en el servidor'});
+        console.error('[ACQUIRE DATA] Error al obtener datos de Kunna', err);
+        return res.status(500).json({error: 'Error interno  al obtener los datos de kunna'});
     }
+
+    try{
+        savedData = await database.saveData(apiData, targetDate);
+        console.log('[ACQUIRE DATA] Datos guardados con éxito en la DB');
+    } catch(err) {
+        console.error('[ACQUIRE DATA] Error al guardar los datos de kunna en la DB', err);
+        return res.status(500).json({error: 'Error interno en el guardado de datos de kunna en la DB'})
+    }
+
+    res.status(201).json({
+            message: 'Datos obtenidos y guardados con exito',
+            data: savedData._id
+        });
     
 };
 

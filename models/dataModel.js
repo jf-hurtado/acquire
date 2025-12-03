@@ -1,32 +1,33 @@
+// models/dataModel.js
 const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
+const { Schema } = mongoose;
 
 const data = new Schema ({
-    features: {
-        0: Number,
-        1: Number,
-        2: Number,
-        3: Number,
-        4: Number,
-        5: Number,
-        6: Number
-    },
+    features: [
+        Number,
+        Number,
+        Number,
+        Number,
+        Number,
+        Number,
+        Number
+    ],
     featureCount: Number,
     scalerVersion: String,
     targetDate: Date,
-    dailyValues: {
-        0: Number,
-        1: Number,
-        2: Number
-    },
+    dailyValues: [
+        Number,
+        Number,
+        Number
+    ],
     kunnaMeta: {
         alias: String,
         name: String,
-        daysUsed: {
-            0: Date,
-            1: Date,
-            2: Date
-        }
+        daysUsed: [
+            Date,
+            Date,
+            Date
+        ]
     },
     fetchMeta: {
         timeStart: Date,
@@ -37,5 +38,4 @@ const data = new Schema ({
     timestamp: true
 });
 
-const Data = model('Data', data);
-module.export = Data;
+module.exports = mongoose.model('Data', data);

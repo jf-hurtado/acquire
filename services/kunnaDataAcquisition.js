@@ -27,11 +27,11 @@ const getDates = () => {
     const startDateForApi = startDate.toISOString().split('.')[0] + 'Z';
     const endDateForApi = endDate.toISOString().split('.')[0] + 'Z';
 
-    return {startDateForApi, endDateForApi};
+    return { startDateForApi, endDateForApi, targetDate };
 };
 
 const getDataKunna = async () => {
-    const { startDateForApi, endDateForApi } = getDates();
+    const { startDateForApi, endDateForApi, targetDate } = getDates();
 
     headers = {
         'Content-Type': 'application/json',
@@ -60,7 +60,6 @@ const getDataKunna = async () => {
         "order": "DESC"
     }
     
-    
     const response = await fetch(process.env.KUNNA_URL, {
         method: 'POST',
         headers: headers, 
@@ -74,7 +73,7 @@ const getDataKunna = async () => {
 
     const apiData = await response.json();
     console.log(apiData);
-    return apiData;
+    return { apiData, targetDate };
 };
 
 module.exports = { getDataKunna };

@@ -35,7 +35,6 @@ const getDataKunna = async () => {
 
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.KUNNA_API_KEY}`
     }
 
     body = {

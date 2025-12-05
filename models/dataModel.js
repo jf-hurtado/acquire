@@ -14,6 +14,7 @@ const data = new Schema ({
     ],
     featureCount: Number,
     scalerVersion: String,
+    createdAt: Date,
     targetDate: Date,
     dailyValues: [
         Number,
@@ -34,8 +35,6 @@ const data = new Schema ({
         timeEnd: Date    
     },
     source: String
-}, {
-    timestamp: true
 });
 
 module.exports = mongoose.model('Data', data);

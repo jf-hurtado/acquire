@@ -13,6 +13,9 @@ const formatData = (data, targetDate) => {
     const consumo_t1 = data.result.values[1][2]
     const consumo_t2 = data.result.values[2][2]
 
+    const currentDate = new Date();
+    const createdAt = currentDate.toISOString();
+
     const targetHour = targetDate.toTimeString().split(':')[0];
     const targetWeekDay = targetDate.getDay();
     const targetMonth = targetDate.getMonth() + 1;
@@ -44,6 +47,7 @@ const formatData = (data, targetDate) => {
         ],
         featureCount: 7,
         scalerVersion: "v1",
+        createdAt: createdAt,
         targetDate: targetDate,
         dailyValues: [
             consumo_t0,

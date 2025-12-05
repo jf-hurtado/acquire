@@ -1,4 +1,5 @@
 // controllers/acquireController.js
+const { now } = require('mongoose');
 const database = require('../services/database');
 const { getDataKunna } = require('../services/kunnaDataAcquisition');
 
@@ -37,9 +38,16 @@ const data = async (req, res) => {
     }
 
     res.status(201).json({
-            message: 'Datos obtenidos y guardados con exito',
-            data: savedData._id
+            "dataId": savedData._id,
+            "features": savedData.features,
+            "featureCount": savedData.featureCount,
+            "scalerVersion": savedData.scalerVersion,
+            "createdAt": savedData.createdAt
         });
+
+    /*res.status(201).json({
+        "objeto": savedData
+    });*/
     
 };
 

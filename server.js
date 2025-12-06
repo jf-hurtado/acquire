@@ -2,12 +2,10 @@
 require('dotenv').config();
 
 const express = require('express');
-const path = require('path');
 const acquireRoutes = require('./routes/acquireRoutes');
 const { connectDB } = require('./services/database');
 
 const PORT = process.env.PORT || 3001;
-const MODEL_VERSION = process.env.MODEL_VERSION || 'v1.0';
 
 const app = express();
 app.use(express.json());

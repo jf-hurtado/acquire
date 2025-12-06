@@ -33,11 +33,11 @@ const getDates = () => {
 const getDataKunna = async () => {
     const { startDateForApi, endDateForApi, targetDate } = getDates();
 
-    headers = {
+    const headers = {
         'Content-Type': 'application/json',
     }
 
-    body = {
+    const body = {
         "time_start": startDateForApi,
         "time_end": endDateForApi,
 
